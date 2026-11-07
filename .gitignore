@@ -1,0 +1,13 @@
+# Dieses Repository enthaelt nur die Download-Seite.
+# Fertige Pakete gehoeren in die Releases, nicht in den Dateibaum.
+
+*.zip
+*.7z
+*.exe
+*.dll
+*.ini
+*.log
+*.bak
+*.tmp
+Thumbs.db
+desktop.ini
