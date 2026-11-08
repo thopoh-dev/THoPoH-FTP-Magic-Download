@@ -74,7 +74,7 @@ so gebaut, dass es nichts tut, was es nicht offen sagt:
 * **Nachvollziehbar:** Zu jedem Release gehört eine `SHA256SUMS.txt`. Prüfen mit
 
   ```powershell
-  Get-FileHash .\THoPoH_FTP-Magic_v1.0.1_win64.zip -Algorithm SHA256
+  Get-FileHash .\THoPoH_FTP-Magic_v1.0.2_win64.zip -Algorithm SHA256
   ```
 
   Der angezeigte Hash muss Zeichen für Zeichen dem Eintrag in `SHA256SUMS.txt`
@@ -107,6 +107,34 @@ Der Preis ist bewusst niedrig gehalten: Es ist kein großer Kopierschutz,
 sondern eine Anerkennung für die Arbeit — eher ein Kaffee als eine Hürde.
 
 ## Änderungen
+
+### 1.0.2 — 08.11.2026
+
+**Neu**
+
+* **Hinweis auf neue Versionen.** Beim Start prüft das Programm höchstens alle
+  7 oder 30 Tage (einstellbar, Standard 7, auch abschaltbar), ob eine neuere
+  Fassung vorliegt — anonym, ohne Konto. Auf Wunsch öffnet sich der Download im
+  Browser; installiert wird nichts automatisch.
+* **Menü „Hilfe" erweitert:** **Funktionen...** zeigt die Leistungsübersicht in
+  einem eigenen Fenster, **Auf Updates prüfen...** fragt sofort nach.
+* **Neuer „Ueber"-Dialog:** Name, Version, Registrierung und die technischen
+  Angaben — inklusive der Versionen von `libssh2.dll`, `libssl-3-x64.dll` und
+  `libcrypto-3-x64.dll`.
+* **Datei-Eigenschaften der EXE:** Beschreibung, Dateiversion, Produktname,
+  Copyright und Sprache sind jetzt hinterlegt (Rechtsklick > Eigenschaften >
+  Details).
+* **Transparenz:** Die README listet vollständig alle Netzwerkverbindungen, alle
+  angelegten Dateien und was das Programm ausdrücklich nicht tut.
+
+**Behoben**
+
+* Mehrfachauswahl per Maus im Remote-Fenster (die Spalten waren breiter als das
+  Fenster, dadurch fehlte der freie Streifen für den Auswahlkasten).
+* Markierung ging bei der automatischen Aktualisierung verloren.
+* Beim Schließen der Einstellungen kam fälschlich „Kein Lizenz-Key eingetragen";
+  zugleich blieb das Key-Feld leer. Beides behoben — bei unverändertem
+  Schlüssel schließt das Fenster ohne Meldung.
 
 ### 1.0.1 — 07.11.2026
 
