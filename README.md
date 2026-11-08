@@ -52,6 +52,46 @@ Eine Installation im System findet nicht statt; zum Entfernen genügt das
 Löschen des Ordners (vorher `ftpbrowser.profile.ini` sichern, wenn Sie Ihre
 Profile behalten wollen).
 
+## Vertrauen und Sicherheit
+
+THoPoH FTP-Magic stammt von Thomas Pohlmann (Gewerbe seit 2008) und ist bewusst
+so gebaut, dass es nichts tut, was es nicht offen sagt:
+
+* **Keine Telemetrie, kein „nach Hause telefonieren".** Übertragen werden nur
+  Ihre eigenen Serververbindungen und — höchstens alle 7 oder 30 Tage,
+  abschaltbar — eine anonyme Abfrage der Versionsnummer bei GitHub. Kein Konto,
+  keine Kennung, keine Cookies.
+* **Kein Hintergrunddienst, kein Autostart, keine Fernsteuerung** und keine
+  stillen Änderungen an Systemeinstellungen, Browsern oder Firewall.
+* **Kein automatisches Update.** Der Hinweis auf eine neue Fassung öffnet nur
+  den Browser; entpackt und ersetzt wird von Hand.
+* **Keine Installation.** Das Programm läuft portabel aus seinem Ordner; zum
+  Entfernen genügt das Löschen des Ordners.
+* **Lizenz ohne Server:** Die Freischaltung wird lokal geprüft, es gibt keine
+  Online-Aktivierung. Für die Hardwarebindung wird lokal ein SHA-256-Hash aus
+  der Windows-Kennung und der Datenträger-Seriennummer gebildet — die Rohwerte
+  werden weder gespeichert noch übertragen.
+* **Nachvollziehbar:** Zu jedem Release gehört eine `SHA256SUMS.txt`. Prüfen mit
+
+  ```powershell
+  Get-FileHash .\THoPoH_FTP-Magic_v1.0.1_win64.zip -Algorithm SHA256
+  ```
+
+  Der angezeigte Hash muss Zeichen für Zeichen dem Eintrag in `SHA256SUMS.txt`
+  entsprechen.
+
+**Warum Windows warnt:** Das Programm ist nicht kostenpflichtig signiert (ein
+Code-Signing-Zertifikat kostet jährlich einen dreistelligen Betrag und ist seit
+2023 an Hardware-Token gebunden). Windows zeigt deshalb „Der Herausgeber konnte
+nicht überprüft werden" — das ist eine Aussage über die fehlende Signatur, nicht
+über den Inhalt der Datei. Weiter mit **Weitere Informationen → Trotzdem
+ausführen**; bei einer ZIP aus dem Internet zusätzlich Rechtsklick →
+Eigenschaften → unten **Zulassen** ankreuzen.
+
+Die vollständige Liste — welche Verbindungen aufgebaut, welche Dateien angelegt
+werden und was das Programm ausdrücklich nicht tut — steht in der
+mitgelieferten `README.md`, Abschnitt 12.1 bis 12.5.
+
 ## Registrierung
 
 Das Programm läuft **30 Tage als Testversion** und lässt sich danach mit einem
