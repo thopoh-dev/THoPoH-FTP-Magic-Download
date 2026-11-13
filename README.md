@@ -8,11 +8,49 @@ WebDAV**. THoPoH FTP-Magic verbindet die Geschwindigkeit von FileZilla
 WinSCP (Root-Rechte per sudo, Schlüssel-Authentifizierung) — und bringt eine
 Reihe eigener Komfortfunktionen mit.
 
+## Drei Funktionen, die es sonst nirgends gibt
+
+**Das ist der Grund, dieses Programm zu benutzen.** Alle drei sind abschaltbar,
+messen vorher nach und lassen sich jederzeit rückgängig machen.
+
+### 1. Smart-Pipelining — viele Dateien als EIN Paket
+
+Hunderte kleiner Dateien einzeln zu übertragen ist quälend langsam: jede Datei
+braucht eigene Befehle, eigene Antworten, eigenes Warten. **Smart-Pipelining**
+packt sie **zu einem Archiv**, überträgt **einen** Datenstrom und **entpackt auf
+dem Server** wieder — und in der Gegenrichtung genauso (auf dem Server packen,
+lokal entpacken). Vorher misst das Programm die Leitung und sagt, ob sich das
+Paket überhaupt lohnt. Gemessen auf der Testleitung: **93 ms je Kommando**, bei
+2.700 Dateien allein rund **vier Minuten**, die das Paket einspart.
+
+### 2. Smart-Transfer — Dateien von Konto A nach Konto B, ohne Ihren Rechner
+
+Zwei Reiter, zwei Konten: der Admin mit vollen Rechten, der Kunde mit seinen.
+Markieren, **Smart-Transfer** wählen — die Dateien werden **serverseitig**
+kopiert und laufen **nicht** über Ihre Leitung. Vorher prüft eine Probedatei,
+dass beide Reiter wirklich denselben Server meinen; der Besitzer wird auf den
+des Zielordners gesetzt.
+
+### 3. Smart-Converter — Bilder werden kleiner, bevor sie hochgehen
+
+Vor dem Upload prüft das Programm, ob Umwandeln lohnt (Stichprobe von drei
+Dateien, echte Zahlen statt Schätzung) und schreibt **WebP** oder **AVIF** —
+**das Original bleibt** erhalten, wenn Sie es so eingestellt haben. Gemessen an
+einem Logo: **WebP −95,6 %**, **AVIF −78,3 %** Größe bei gleicher Anzeige.
+
+Zu finden unter **Extras → Smart-Pipelining - Messung und Empfehlungen**, im
+Kontextmenü der beiden Dateilisten (Smart-Transfer) und über den Schalter
+**Smart-Converter**. Ausführlich in der mitgelieferten `README.md`
+(Abschnitte 1.1.1, 2.11 und 13.8).
+
+Weiter dabei: **zwei Reiter A und B** (zwei Verbindungen gleichzeitig),
+**Dunkelmodus** mit Automatik, **sechs Sprachen**, **Zertifikatsprüfung** mit
+Schloss, **Delta-Übertragung** (nur Änderungen), **Schnellmodus** für
+Schlüsselpaare und der neu aufgebaute **Servermanager** mit beliebig tiefen
+Verzeichnissen, freien Trennern und eigener Reihenfolge.
+
 > **⚠️ Ausschließlich 64-Bit-Windows.** Das Programm ist eine 64-Bit-Anwendung
 > (x86_64) und läuft nicht auf 32-Bit-Windows.
-
-> **Dieses Repository enthält nur die fertigen Programm-Pakete.** Der Quellcode
-> ist nicht öffentlich.
 
 ---
 
@@ -27,6 +65,12 @@ dort das ZIP herunterladen. Im Paket enthalten:
 | `libssh2.dll` | SSH-Bibliothek für SFTP/SCP |
 | `libssl-3-x64.dll` | OpenSSL (TLS) |
 | `libcrypto-3-x64.dll` | OpenSSL-Kryptografie (muss zu `libssl` passen) |
+| `libwebp.dll` | Bild-Umwandlung: WebP |
+| `libheif.dll` | Bild-Umwandlung: HEIC und AVIF (Container) |
+| `libx265.dll` | HEIC/AVIF-Kodierung (H.265) |
+| `de265.dll` | HEIF-Dekodierung (H.265) |
+| `dav1d.dll` | AV1-Dekodierung |
+| `lang\` | Sprachdateien (deutsch, englisch, französisch, niederländisch, polnisch, türkisch) |
 | `README.md` | Ausführliche Anleitung |
 
 `ftpbrowser.ini` und `ftpbrowser.profile.ini` sind **nicht** im Paket — sie
@@ -37,7 +81,8 @@ entstehen beim ersten Start bzw. beim ersten gespeicherten Profil.
 1. ZIP in einen **beschreibbaren** Ordner entpacken, z. B. `C:\Tools\FTP-Magic`
    oder einen Ordner unter `C:\Users\<Name>\...` — **nicht** nach
    `C:\Program Files`, dorthin darf das Programm nicht schreiben.
-2. Prüfen, dass `ftpbrowser.exe` und die drei DLLs im selben Ordner liegen.
+2. Prüfen, dass `ftpbrowser.exe` und **alle mitgelieferten DLLs** im selben
+   Ordner liegen, und der Ordner `lang\` daneben liegt.
 3. `ftpbrowser.exe` starten.
 
 > **Warum der Ordner beschreibbar sein muss:** Alle Einstellungen und
@@ -49,8 +94,14 @@ entstehen beim ersten Start bzw. beim ersten gespeicherten Profil.
 > dort eine `ftpbrowser.ini`, passt es.
 
 Eine Installation im System findet nicht statt; zum Entfernen genügt das
-Löschen des Ordners (vorher `ftpbrowser.profile.ini` sichern, wenn Sie Ihre
-Profile behalten wollen).
+Löschen des Ordners.
+
+> **⚠️ Vor dem Löschen sichern:** Im Programmordner liegen Ihre Daten. Mit dem
+> Ordner verschwinden `ftpbrowser.ini` (Einstellungen),
+> `ftpbrowser.profile.ini` (alle Verbindungen) und alle Protokolle. Liegt dort
+> ein Unterordner `keys\` mit eigenen Schlüsseln (Schnellmodus), ist auch der
+> weg — danach kommen Sie auf diese Server nur noch mit Passwort. Den Ordner
+> also vorher **umbenennen oder kopieren**, nicht einfach löschen.
 
 ## Vertrauen und Sicherheit
 
@@ -68,13 +119,12 @@ so gebaut, dass es nichts tut, was es nicht offen sagt:
 * **Keine Installation.** Das Programm läuft portabel aus seinem Ordner; zum
   Entfernen genügt das Löschen des Ordners.
 * **Lizenz ohne Server:** Die Freischaltung wird lokal geprüft, es gibt keine
-  Online-Aktivierung. Für die Hardwarebindung wird lokal ein SHA-256-Hash aus
-  der Windows-Kennung und der Datenträger-Seriennummer gebildet — die Rohwerte
-  werden weder gespeichert noch übertragen.
+  Online-Aktivierung und keine Übertragung Ihrer Daten. Eine registrierte
+  Fassung gilt für einen Windows-Benutzer auf einem Rechner.
 * **Nachvollziehbar:** Zu jedem Release gehört eine `SHA256SUMS.txt`. Prüfen mit
 
   ```powershell
-  Get-FileHash .\THoPoH_FTP-Magic_v1.0.2_win64.zip -Algorithm SHA256
+  Get-FileHash .\THoPoH_FTP-Magic_v1.0.3_win64.zip -Algorithm SHA256
   ```
 
   Der angezeigte Hash muss Zeichen für Zeichen dem Eintrag in `SHA256SUMS.txt`
@@ -107,6 +157,67 @@ Der Preis ist bewusst niedrig gehalten: Es ist kein großer Kopierschutz,
 sondern eine Anerkennung für die Arbeit — eher ein Kaffee als eine Hürde.
 
 ## Änderungen
+
+### 1.0.3 — 13.11.2026
+
+**Das Wichtigste vorweg:** Diese Fassung bringt die drei Funktionen, die es in
+dieser Form nirgends gibt — **Smart-Pipelining** (viele kleine Dateien als ein
+Paket übertragen und auf dem Server entpacken, in beide Richtungen),
+**Smart-Transfer** (serverseitig von Konto A nach Konto B, ohne Umweg über den
+eigenen Rechner) und **Smart-Converter** (Bilder vor dem Upload auf WebP/AVIF,
+mit Stichprobe und gemessener Ersparnis). Dazu zwei Reiter, Dunkelmodus, sechs
+Sprachen, Zertifikatsprüfung und der neu aufgebaute Servermanager.
+
+**Neu**
+
+* **Zwei Reiter A und B.** Zwei Verbindungen gleichzeitig — gedacht für
+  „Serveradmin mit vollem Zugriff" und „Usertask zum Gegenprüfen". Jeder Reiter
+  hat eigene Verbindung, eigene Pfade, eigenes Schloss, eigene Dateiliste; die
+  Warteschlange bleibt eine.
+* **Smart-Pipelining.** Viele kleine Dateien werden zu einem Archiv gepackt, in
+  einem Transfer übertragen und auf der Gegenseite entpackt. Unter **Extras →
+  Smart-Pipelining - Messung und Empfehlungen...** misst das Programm vorher die
+  Leitung und sagt, ob sich das Paket lohnt.
+* **Smart-Transfer (A → B).** Markierte Dateien serverseitig in den Ordner des
+  anderen Reiters kopieren, ohne Umweg über den eigenen Rechner — mit
+  Probedatei-Prüfung und Übernahme des Ziel-Besitzers.
+* **Smart-Converter.** Bilder vor dem Hochladen in WebP/AVIF umrechnen, mit
+  Stichprobe und eigener Fortschrittsanzeige.
+* **Dunkelmodus mit Automatik.** Schalter in der Statusleiste: Auto / Dunkel /
+  Hell; „Auto" übernimmt die Windows-Einstellung.
+* **Sechs Sprachen über Textdateien** im Ordner `lang` (deutsch, englisch,
+  französisch, niederländisch, polnisch, türkisch), wählbar in den
+  Einstellungen. Fehlt eine Übersetzung, wird die Stelle sichtbar markiert.
+* **Nur Änderungen hochladen (Delta).** Unveränderte Dateien werden erkannt,
+  gezählt und auf Wunsch übersprungen.
+* **Schnellmodus.** Schlüsselpaar auf diesem Rechner erzeugen und auf dem
+  Server eintragen — mit Rücknahme; Ablage in `keys\`.
+* **Servermanager neu aufgebaut.** Beliebig tiefe Verzeichnisse, freie Trenner,
+  eigene Reihenfolge, Importe in getrennten Blöcken, Einträge per Menü **oder
+  Maus** verschieben, Trenner umbenennen.
+* **Zertifikatsprüfung mit Schloss** in der Statusleiste, einschließlich
+  selbst ausgestellter Zertifikate nach Rückfrage.
+* **Schreibrechte-Prüfung beim Start.** Ist der Programmordner nicht
+  beschreibbar, sagt das Programm es einmal je Start im Klartext.
+
+**Behoben**
+
+* **`german.lng` enthielt türkische Texte** — die Sprachspalte wurde nach
+  Zeilenposition statt nach Sprachcode gewählt.
+* **Schlüsseldatei gehörte dem falschen Konto** — der Dateiname enthielt nur den
+  Server, jetzt steht der Benutzer darin; alte Dateien werden weiter gefunden.
+* **Update-Prüfung meldete den falschen Stand**, wenn die Fassung im Netz älter
+  war als die installierte.
+* **„Gezählte Objekte (Remote)" zeigte eine alte Zahl** beim direkten
+  Ordner-Download (übertragen wurde alles, nur die Anzeige war falsch).
+* **Schnellmodus fror ein („Keine Rückmeldung")** — leere Argumente gingen auf
+  der Kommandozeile verloren, dadurch wurde der Schlüssel still verschlüsselt.
+* **Deutsche Reste in fremder Sprache** — geänderte Texte verloren ihren
+  Schlüssel; sie sind wieder übersetzt.
+* **Löschen einer Gruppe** sichert die Profildatei vorher und nennt im Dialog,
+  wie viele Server betroffen sind.
+* **Kein „+ Neuer Server" mehr im Baum** — ein Fehlklick legte einen Server an
+  einer nicht gewählten Stelle an; der Knopf **Neuer Server** genügt.
 
 ### 1.0.2 — 08.11.2026
 
