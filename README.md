@@ -2,8 +2,10 @@
 
 **Kostenloser Download für Windows — 64-Bit**
 
-Ein professioneller Zwei-Panel-Dateimanager für **FTP, FTPS, SFTP, SCP und
-WebDAV**. THoPoH FTP-Magic verbindet die Geschwindigkeit von FileZilla
+**[➜ THoPoH FTP-Magic 1.0.4 herunterladen — ZIP für Windows 64 Bit](https://github.com/thopoh-dev/THoPoH-FTP-Magic-Download/releases/download/v1.0.4/THoPoH_FTP-Magic_v1.0.4_win64.zip)**
+
+Ein professioneller Zwei-Panel-Dateimanager für **FTP, FTPS, SFTP, SCP, WebDAV
+und S3**. THoPoH FTP-Magic verbindet die Geschwindigkeit von FileZilla
 (parallele Transfers mit Einzel-Fortschrittsbalken) mit der Flexibilität von
 WinSCP (Root-Rechte per sudo, Schlüssel-Authentifizierung) — und bringt eine
 Reihe eigener Komfortfunktionen mit.
@@ -56,12 +58,20 @@ Verzeichnissen, freien Trennern und eigener Reihenfolge.
 
 ## Download
 
-Die jeweils aktuelle Fassung liegt unter **[Releases](../../releases/latest)** —
-dort das ZIP herunterladen. Im Paket enthalten:
+**[➜ THoPoH FTP-Magic 1.0.4 herunterladen — ZIP für Windows 64 Bit](https://github.com/thopoh-dev/THoPoH-FTP-Magic-Download/releases/download/v1.0.4/THoPoH_FTP-Magic_v1.0.4_win64.zip)**
+
+Prüfsumme zur Kontrolle:
+[SHA256SUMS.txt](https://github.com/thopoh-dev/THoPoH-FTP-Magic-Download/releases/download/v1.0.4/SHA256SUMS.txt) —
+frühere und künftige Fassungen: **[alle Releases](../../releases/latest)**.
+ZIP entpacken, `ftpbrowser.exe` starten — keine Installation, kein Eintrag im
+Benutzerprofil.
+
+Im Paket enthalten:
 
 | Datei | Zweck |
 |---|---|
-| `ftpbrowser.exe` | Das Programm |
+| `ftpbrowser.exe` | Das Programm (Fenster) |
+| `ftpbrowser-cli.exe` | Dasselbe Programm ohne Fenster — für Skripte und die Windows-Aufgabenplanung |
 | `libssh2.dll` | SSH-Bibliothek für SFTP/SCP |
 | `libssl-3-x64.dll` | OpenSSL (TLS) |
 | `libcrypto-3-x64.dll` | OpenSSL-Kryptografie (muss zu `libssl` passen) |
@@ -72,6 +82,8 @@ dort das ZIP herunterladen. Im Paket enthalten:
 | `dav1d.dll` | AV1-Dekodierung |
 | `lang\` | Sprachdateien (deutsch, englisch, französisch, niederländisch, polnisch, türkisch) |
 | `README.md` | Ausführliche Anleitung |
+| `README-cli.md` | Anleitung der Kommandozeile |
+| `langpruefer.exe` | Prüfwerkzeug für die Sprachdateien |
 
 `ftpbrowser.ini` und `ftpbrowser.profile.ini` sind **nicht** im Paket — sie
 entstehen beim ersten Start bzw. beim ersten gespeicherten Profil.
