@@ -4,8 +4,9 @@
 
 **[➜ THoPoH FTP-Magic 1.0.4 herunterladen — ZIP für Windows 64 Bit](https://github.com/thopoh-dev/THoPoH-FTP-Magic-Download/releases/download/v1.0.4/THoPoH_FTP-Magic_v1.0.4_win64.zip)**
 
-Ein professioneller Zwei-Panel-Dateimanager für **FTP, FTPS, SFTP, SCP, WebDAV
-und S3**. THoPoH FTP-Magic verbindet die Geschwindigkeit von FileZilla
+Ein professioneller Zwei-Panel-Dateimanager! Endlich "WEB.DE, GMX, S3, SFTP und FTP
+in einem einzigen, ultraschnellen Zwei-Panel-Manager – ohne Abo und ohne Installation.“
+THoPoH FTP-Magic verbindet die Geschwindigkeit von FileZilla
 (parallele Transfers mit Einzel-Fortschrittsbalken) mit der Flexibilität von
 WinSCP (Root-Rechte per sudo, Schlüssel-Authentifizierung) — und bringt eine
 Reihe eigener Komfortfunktionen mit.
