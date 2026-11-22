@@ -67,6 +67,8 @@ frühere und künftige Fassungen: **[alle Releases](../../releases/latest)**.
 ZIP entpacken, `ftpbrowser.exe` starten — keine Installation, kein Eintrag im
 Benutzerprofil.
 
+**Auch bei heise.de im Download-Katalog:**
+<a title="THoPoH FTP Magic, Download bei heise" href="https://www.heise.de/download/product/thopohftpmagic"><img alt="THoPoH FTP Magic, Download bei heise" title="THoPoH FTP Magic, Download bei heise" src="https://www.heise.de/software/icons/download_logo1.png" /></a>
 Im Paket enthalten:
 
 | Datei | Zweck |
