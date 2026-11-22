@@ -103,14 +103,15 @@ entstehen beim ersten Start bzw. beim ersten gespeicherten Profil.
 > schreibgeschützten Ordner startet das Programm zwar, kann aber nichts
 > speichern — Einstellungen und Profile sind beim nächsten Start wieder weg.
 >
+> **Schnelltest:** Programm starten, schließen, in den Ordner schauen. Liegt
+> dort eine `ftpbrowser.ini`, passt es.
+
 > **Hinweis zu Risiken und Haftung:** Das Programm verändert Dateien auf Servern
 > und auf Ihrem Rechner - bitte sichern Sie vorher, was Ihnen wichtig ist. Es
 > fragt vor dem Überschreiben, zeigt Unterschiede vorher an und löscht nichts
 > ohne Ihre Bestätigung. Es gilt die gesetzliche Gewährleistung; die Haftung ist
 > im gesetzlich zulässigen Rahmen auf den vertragstypischen, vorhersehbaren
 > Schaden begrenzt (Kapitel 20 der mitgelieferten `README.md`).
-> **Schnelltest:** Programm starten, schließen, in den Ordner schauen. Liegt
-> dort eine `ftpbrowser.ini`, passt es.
 
 Eine Installation im System findet nicht statt; zum Entfernen genügt das
 Löschen des Ordners.
